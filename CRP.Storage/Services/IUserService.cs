@@ -5,8 +5,8 @@ namespace CRP.Storage.Services
 {
     public interface IUserService
     {
-        User Add(User user);
-        User Update(User user);
+        bool Add(User user);
+        bool Update(User user);
         bool Delete(int id);
         User GetById(int id);
         IEnumerable<User> GetUsers();

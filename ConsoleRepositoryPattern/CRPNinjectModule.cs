@@ -10,6 +10,7 @@ namespace ConsoleRepositoryPattern
         {
             Bind<CRPDbContext>().ToSelf().InSingletonScope();
             Bind<IRepository>().To<Repository>().InSingletonScope();
+            Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
 
             //Bind<IRepository>().To<Repository>().InSingletonScope().WithConstructorArgument("context", new OCMDbContext());
             //Bind<IRepository>().To<Repository>().InSingletonScope().WithConstructorArgument("context", new OCMDbContext());

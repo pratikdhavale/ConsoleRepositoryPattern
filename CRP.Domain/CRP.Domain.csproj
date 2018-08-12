@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Infrastructure\AuditableEntity.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

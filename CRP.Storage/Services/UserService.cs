@@ -14,15 +14,15 @@ namespace CRP.Storage.Services
             _repository = repository;
         }
 
-        public User Add(User user)
+        public bool Add(User user)
         {
             var isExists = _repository.Project<User, bool>(list => (from b in list where b.Email == user.Email select b.Email).Any());
             if (isExists)
             {
-                return null;
+                return false;
             }
             user = _repository.Add(user);
-            return (_repository.CommitChanges() > 0) ? user : null;
+            return true;
         }
 
         public bool Delete(int id)
@@ -35,7 +35,7 @@ namespace CRP.Storage.Services
             else
             {
                 _repository.Delete(user);
-                return (_repository.CommitChanges() > 0);
+                return true;
             }
         }
 
@@ -49,12 +49,12 @@ namespace CRP.Storage.Services
             return _repository.Project<User, List<User>>(list => (from b in list select b).ToList());
         }
 
-        public User Update(User user)
+        public bool Update(User user)
         {
             var isExists = _repository.Project<User, bool>(list => (from b in list where b.Email == user.Email && b.UserId != user.UserId select b.FullName).Any());
             if (isExists)
             {
-                return null;
+                return false;
             }
             var usr = _repository.Load<User>(x => x.UserId == user.UserId);
             if (usr != null)
@@ -62,8 +62,7 @@ namespace CRP.Storage.Services
                 usr.FullName = user.FullName;
                 usr.UserType = user.UserType;
             }
-            _repository.CommitChanges();
-            return usr;
+            return true;
         }
     }
 }
